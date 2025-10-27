@@ -77,3 +77,30 @@ function SelectParty() {
   `;
   return $party;
 }
+// Render
+function render() {
+  const $app = document.querySelector("#app");
+  $app.innerHTML = `
+    <h1>Party Planner</h1>
+    <main>
+      <section>
+        <h2>Upcoming Parties</h2>
+        <PartyList></PartyList>
+      </section>
+      <section id="selected">
+        <h2>Party Details</h2>
+        <SelectParty></SelectParty>
+      </section>
+    </main>
+  `;
+
+  $app.querySelector("PartyList").replaceWith(PartyList());
+  $app.querySelector("SelectParty").replaceWith(SelectParty());
+}
+
+async function init() {
+  await getParties();
+  render();
+}
+
+init();
